@@ -1,5 +1,9 @@
 ENV['RAILS_ENV'] = 'test'
 
+# TODO: figure out why this is not loading from .env.test as expected
+require 'dotenv'
+Dotenv.load
+
 require 'pry'
 require 'cardconnect_sdk'
 require 'json'
