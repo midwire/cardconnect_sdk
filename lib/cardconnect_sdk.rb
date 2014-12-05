@@ -1,5 +1,9 @@
-require "cardconnect_sdk/version"
+require 'cardconnect_sdk/version'
 
 module CardconnectSdk
-  # Your code goes here...
+  def self.root
+    Pathname.new(File.dirname(__FILE__)).parent
+  end
+
+  autoload :Client,            'cardconnect_sdk/client'
 end
