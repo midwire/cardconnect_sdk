@@ -12,7 +12,6 @@ module CardconnectSdk
     end
 
     def ping
-      url = ENV['CARDCONNECT_BASE_URL'] or raise "CARDCONNECT_BASE_URL is not properly configured"
       response = RestClient::Request.new(
         :method => :get,
         :url => url,
