@@ -6,4 +6,5 @@ module CardconnectSdk
   end
 
   autoload :Client,            'cardconnect_sdk/client'
+  autoload :Authorization,     'cardconnect_sdk/authorization/authorization'
 end
