@@ -91,9 +91,19 @@ module CardconnectSdk
         end
       end
 
-      context '#void', focus: true do
+      context '#void' do
+        let(:retref) {
+          res = instance.authorize_transaction(FactoryGirl.create(:visa_authorization_request, amount: '0.99'))
+          res.retref
+        }
 
-        
+        context '.void_transaction' do
+          it 'voids an existing transaction' do
+            req = FactoryGirl.create(:void_request, retref: retref)
+            res = instance.void_transaction(req)
+            expect(res.authcode).to eq("REVERS")
+          end
+        end
       end
 
     end

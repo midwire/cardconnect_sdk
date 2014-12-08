@@ -5,6 +5,7 @@ module CardconnectSdk
   class Client
     include Authorization
     include Capture
+    include Void
 
     attr_reader :url, :merchant_id, :username, :password
 
