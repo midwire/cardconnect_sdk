@@ -14,14 +14,13 @@ module CardconnectSdk
         end
       end
 
-      context '.validation' do
-        it 'requires merchid' do
-          req = create(:visa_authorization_request, merchid: nil)
-          expect(req).not_to be_valid
-        end
-
-        it 'requires account' do
-
+      context '.to_json' do
+        it 'returns valid json' do
+          req = create(:visa_authorization_request)
+          json = req.to_json
+          expect(json).to eq(
+            '{"merchid":"496160873888","accttype":"VISA","orderid":"CCSDK-2014-12-25","account":"4111111111111111","amount":"0","currency":"USD","name":"TOM JONES","address":"123 MAIN STREET","city":"MIDVALE","region":"UT","country":"US","postal":"84047","ecomind":"E","expiry":"1215","cvv2":"123"}'
+          )
         end
       end
     end

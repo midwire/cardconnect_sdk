@@ -3,12 +3,12 @@ require 'rest_client'
 
 module CardconnectSdk
   class Client
+    include Authorization
 
     attr_reader :url, :merchant_id, :username, :password
 
     def initialize(config={})
       @url, @merchant_id, @username, @password = config.values_at(:url, :merchant_id, :username, :password)
-      @auth_token = Base64.strict_encode64("#{@username}:#{@password}")
     end
 
     def ping
@@ -28,7 +28,15 @@ module CardconnectSdk
     private
 
     def auth_token
-      @auth_token
+      @auth_token ||= Base64.strict_encode64("#{@username}:#{@password}")
+    end
+
+    def default_headers
+      {
+        content_type: :json, 
+        accept: :json, 
+        authorization: "Basic #{auth_token}"
+      }
     end
   end
 end

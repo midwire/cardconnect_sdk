@@ -1,15 +1,23 @@
 module CardconnectSdk
   module Authorization
     class Request
+      include Attributable
 
-      attr_accessor :merchid, :accttype, :orderid, :account, :expiry, 
-                    :amount, :currency, :name, :address, :city, :region, :country, :postal,
-                    :ecomind, :cvv2, :track, :tokenize
+      # Standard Attributes for all authorizations
+      attr_accessor :merchid, :accttype, :orderid, :account, :amount, :currency,
+                    :name, :address, :city, :region, :country, :postal, :email,
+                    :ecomind, :tokenize, :capture
 
-      def valid?
-        !merchid.nil?
+      # Credit Card Attributes
+      attr_accessor :expiry, :cvv2, :track
+
+      # ECheck/ACH Attributes
+      attr_accessor :bankaba, :ssnl4, :license
+
+      # TODO: implement user fields
+      def userfields
+        @userfields ||= {}
       end
-      
     end
   end
 end

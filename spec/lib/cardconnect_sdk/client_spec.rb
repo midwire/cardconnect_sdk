@@ -3,6 +3,7 @@ require 'spec_helper'
 module CardconnectSdk
   RSpec.describe Client, type: :lib do
 
+    let(:instance) { described_class.new(config) }
     let(:config) {
       {
         url:          ENV['CARDCONNECT_BASE_URL'],
@@ -39,6 +40,44 @@ module CardconnectSdk
       it 'establishes an authorized connection to the CardConnect REST API' do
         client = Client.new(config)
         expect(client.ping).to match(/CardConnect REST Servlet/)
+    context '#requests' do
+
+      context '.ping' do
+        it 'establishes an authorized connection to the CardConnect REST API' do
+          expect(instance.ping).to match(/CardConnect REST Servlet/)
+        end
+      end
+
+      context '#authorization' do
+        context '.authorize_transaction' do
+          it 'creates a new credit card authorization' do
+            req = FactoryGirl.create(:visa_authorization_request)
+            res = instance.authorize_transaction(req)
+            expect(res).to be_a(CardconnectSdk::Authorization::Response)
+            expect(res.respstat).to eq('A')
+          end
+
+          it 'creates a new tokenized credit card authorization' do
+            req = FactoryGirl.create(:visa_authorization_request, :tokenize)
+            res = instance.authorize_transaction(req)
+            expect(res.token).to_not be_nil
+          end
+
+          it 'creates a new capture credit card authorization' do
+            req = FactoryGirl.create(:visa_authorization_request, :capture, amount: '99.99')
+            res = instance.authorize_transaction(req)
+            expect(res.respstat).to eq('A')
+          end
+
+          it 'creates a new echeck authorization' do
+            req = FactoryGirl.create(:echeck_authorization_request)
+            res = instance.authorize_transaction(req)
+            # binding.pry
+            expect(res).to be_a(CardconnectSdk::Authorization::Response)
+            expect(res.respstat).to eq('A'), "expected: \"A\"\ngot: \"#{res.respstat}\"\nreason: \"#{res.resptext}\""
+            # TODO: Figure out what 'Velocity amount' means; maybe need to randomize account or amount
+          end
+        end
       end
     end
 

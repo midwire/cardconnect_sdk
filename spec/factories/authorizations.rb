@@ -17,7 +17,32 @@ FactoryGirl.define do
     ecomind 'E' # T telephone or mail, R recurring, E ecommerce/Internet
     cvv2 '123'
     track nil
-    tokenize 'Y'
+    
+    trait :tokenize do
+      tokenize 'Y'
+    end
+
+    trait :capture do
+      capture 'Y'
+    end
+  end
+
+  factory :echeck_authorization_request, class: CardconnectSdk::Authorization::Request do
+    merchid ENV['CARDCONNECT_MERCHANT_ID']
+    account '123123123123'
+    bankaba '124001545' # Chase Bank, UT
+    amount '100.00'
+    currency 'USD'
+    name 'TOM JONES'
+    ecomind 'E'
+    
+    trait :tokenize do
+      tokenize 'Y'
+    end
+
+    trait :capture do
+      capture 'Y'
+    end
   end
 
 end
