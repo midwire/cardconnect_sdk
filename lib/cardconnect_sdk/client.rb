@@ -4,6 +4,7 @@ require 'rest_client'
 module CardconnectSdk
   class Client
     include Authorization
+    include Capture
 
     attr_reader :url, :merchant_id, :username, :password
 

@@ -36,10 +36,6 @@ module CardconnectSdk
       end
     end
 
-    context '.ping' do
-      it 'establishes an authorized connection to the CardConnect REST API' do
-        client = Client.new(config)
-        expect(client.ping).to match(/CardConnect REST Servlet/)
     context '#requests' do
 
       context '.ping' do
@@ -79,7 +75,27 @@ module CardconnectSdk
           end
         end
       end
-    end
 
+      context '#capture' do
+        let(:retref) {
+          res = instance.authorize_transaction(FactoryGirl.create(:visa_authorization_request, amount: '0.99'))
+          res.retref
+        }
+
+        context '.capture_transaction' do
+          it 'captures an existing authorized transaction' do
+            req = FactoryGirl.create(:capture_request, retref: retref)
+            res = instance.capture_transaction(req)
+            expect(res.setlstat).to eq("Queued for Capture")
+          end
+        end
+      end
+
+      context '#void', focus: true do
+
+        
+      end
+
+    end
   end
 end
