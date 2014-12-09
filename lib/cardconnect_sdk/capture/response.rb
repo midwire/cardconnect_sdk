@@ -3,7 +3,7 @@ module CardconnectSdk
     class Response
       include Attributable
 
-      attr_accessor :amount, :setlstat, :retref, :merchid, :account
+      attr_reader :amount, :setlstat, :retref, :merchid, :account
 
     end
   end
