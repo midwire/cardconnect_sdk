@@ -1,0 +1,41 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://testing:testing123@fts.prinpay.com:6443/cardconnect/rest/auth
+    body:
+      encoding: UTF-8
+      string: '{"merchid":"496160873888","account":"123123123123","amount":"100.00","currency":"USD","name":"TOM
+        JONES","ecomind":"E","bankaba":"124001545"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '141'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - DENY
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '209'
+      Date:
+      - Tue, 09 Dec 2014 15:21:44 GMT
+    body:
+      encoding: UTF-8
+      string: '{"amount":"100.00","resptext":"Success","authcode":"D81931","respcode":"00","retref":"343788137304","merchid":"542041","account":"9124468384113123","cvvresp":"U","avsresp":"U","respstat":"A","respproc":"PSTR"}'
+    http_version: 
+  recorded_at: Tue, 09 Dec 2014 15:21:44 GMT
+recorded_with: VCR 2.9.3

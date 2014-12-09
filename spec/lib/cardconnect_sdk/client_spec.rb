@@ -65,13 +65,11 @@ module CardconnectSdk
             expect(res.respstat).to eq('A')
           end
 
-          it 'creates a new echeck authorization' do
+          it 'creates a new echeck authorization', :vcr do
             req = FactoryGirl.create(:echeck_authorization_request)
             res = instance.authorize_transaction(req)
-            # binding.pry
             expect(res).to be_a(CardconnectSdk::Authorization::Response)
-            expect(res.respstat).to eq('A'), "expected: \"A\"\ngot: \"#{res.respstat}\"\nreason: \"#{res.resptext}\""
-            # TODO: Figure out what 'Velocity amount' means; maybe need to randomize account or amount
+            expect(res.respstat).to eq('A')
           end
         end
       end
