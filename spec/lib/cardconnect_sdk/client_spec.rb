@@ -104,6 +104,22 @@ module CardconnectSdk
         end
       end
 
+      context '#refund' do
+        let(:retref) {
+          res = instance.authorize_transaction(FactoryGirl.create(:visa_authorization_request, :capture, amount: '0.99'))
+          res.retref
+        }
+
+        context '.refund_transaction' do
+          it 'refunds an existing transaction' do
+            req = FactoryGirl.create(:refund_request, retref: retref)
+            res = instance.refund_transaction(req)
+            expect(res.respstat).to eq('A')
+            expect(res.authcode).to eq("REFUND")
+          end
+        end
+      end
+
     end
   end
 end

@@ -10,4 +10,5 @@ module CardconnectSdk
   autoload :Authorization,     'cardconnect_sdk/authorization/authorization'
   autoload :Capture,           'cardconnect_sdk/capture/capture'
   autoload :Void,              'cardconnect_sdk/void/void'
+  autoload :Refund,            'cardconnect_sdk/refund/refund'
 end
