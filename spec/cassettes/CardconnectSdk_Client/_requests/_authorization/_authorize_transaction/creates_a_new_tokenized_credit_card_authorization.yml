@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://testing:testing123@fts.prinpay.com:6443/cardconnect/rest/auth
+    body:
+      encoding: UTF-8
+      string: '{"merchid":"496160873888","accttype":"VISA","orderid":"CCSDK-2014-12-25","account":"4111111111111111","amount":"0","currency":"USD","name":"TOM
+        JONES","address":"123 MAIN STREET","city":"MIDVALE","region":"UT","country":"US","postal":"84047","ecomind":"E","tokenize":"Y","expiry":"1215","cvv2":"123"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '300'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - DENY
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '258'
+      Date:
+      - Tue, 09 Dec 2014 21:47:58 GMT
+      Set-Cookie:
+      - cardconnect=!KDi1yN6SPGYRiMgTV5iS4B8SouVgtGUx8m/xXrAbcu0G2+gvCEA1lj1H9shQ1DfG1k0BP3/EKWXhfBM=;
+        path=/
+    body:
+      encoding: UTF-8
+      string: '{"retref":"343044160479","commcard":"AC ","avsresp":" ","respproc":"FNOR","amount":"0.00","resptext":"Approval","authcode":"PPS888","respcode":"00","token":"9418594164541111","merchid":"496160873888","cvvresp":"M","account":"41XXXXXXXXXX1111","respstat":"A"}'
+    http_version: 
+  recorded_at: Tue, 09 Dec 2014 21:48:01 GMT
+recorded_with: VCR 2.9.3

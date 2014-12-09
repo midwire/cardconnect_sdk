@@ -1,0 +1,38 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://testing:testing123@fts.prinpay.com:6443/cardconnect/rest/deposit?date=1208&merchid=496160873888
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - DENY
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '4153'
+      Date:
+      - Tue, 09 Dec 2014 21:43:58 GMT
+    body:
+      encoding: UTF-8
+      string: '[{"postdate":"20141209","cbakamnt":"0.00","accttype":"V","feeamnt":"237.59","respproc":"FNOR","currency":"USD","txns":[{"merchbatch":1900938677,"retref":"340039127614","hostbatch":"8676","feeamnt":"0.00","action":"DEB","depamnt":"299.99"},{"merchbatch":1900938677,"retref":"341484172275","hostbatch":"8676","feeamnt":"0.00","action":"DEB","depamnt":"396.76"},{"merchbatch":1900938677,"retref":"342492112406","hostbatch":"8676","feeamnt":"0.00","action":"DEB","depamnt":"179.99"},{"merchbatch":1900938677,"retref":"342493112451","hostbatch":"8676","feeamnt":"0.00","action":"DEB","depamnt":"179.99"},{"merchbatch":1900938677,"retref":"342496113683","hostbatch":"8676","feeamnt":"0.00","action":"REF","depamnt":"399.99"},{"merchbatch":1900938677,"retref":"342545144440","hostbatch":"8676","feeamnt":"0.00","action":"DEB","depamnt":"844.72"},{"merchbatch":1900938679,"retref":"342608155189","hostbatch":"8680","feeamnt":"0.00","action":"DEB","depamnt":"285.00"},{"merchbatch":1900938679,"retref":"342621156376","hostbatch":"8680","feeamnt":"0.00","action":"DEB","depamnt":"1050.00"},{"merchbatch":1900938678,"retref":"342623156613","hostbatch":"8680","feeamnt":"0.00","action":"DEB","depamnt":"10.00"},{"merchbatch":1900938679,"retref":"342626156650","hostbatch":"8680","feeamnt":"0.00","action":"DEB","depamnt":"64.65"},{"merchbatch":1900938679,"retref":"342638157067","hostbatch":"8680","feeamnt":"0.00","action":"DEB","depamnt":"99.99"},{"merchbatch":1900938679,"retref":"342644157595","hostbatch":"8680","feeamnt":"0.00","action":"DEB","depamnt":"99.99"},{"merchbatch":1900938679,"retref":"342647157602","hostbatch":"8680","feeamnt":"0.00","action":"DEB","depamnt":"99.99"},{"merchbatch":1900938680,"retref":"342649157849","hostbatch":"8680","feeamnt":"0.00","action":"DEB","depamnt":"5.00"},{"merchbatch":1900938679,"retref":"342662159027","hostbatch":"8680","feeamnt":"0.00","action":"DEB","depamnt":"0.99"},{"merchbatch":1900938679,"retref":"342663159129","hostbatch":"8680","feeamnt":"0.00","action":"DEB","depamnt":"0.99"},{"merchbatch":1900938679,"retref":"342665159151","hostbatch":"8680","feeamnt":"0.00","action":"DEB","depamnt":"0.99"},{"merchbatch":1900938681,"retref":"342666159599","hostbatch":"8681","feeamnt":"0.00","action":"DEB","depamnt":"0.99"},{"merchbatch":1900938681,"retref":"342669159621","hostbatch":"8681","feeamnt":"0.00","action":"DEB","depamnt":"99.99"},{"merchbatch":1900938681,"retref":"342671159623","hostbatch":"8681","feeamnt":"0.00","action":"DEB","depamnt":"0.99"},{"merchbatch":1900938681,"retref":"342672159703","hostbatch":"8681","feeamnt":"0.00","action":"DEB","depamnt":"0.99"},{"merchbatch":1900938681,"retref":"342674159706","hostbatch":"8681","feeamnt":"0.00","action":"DEB","depamnt":"99.99"},{"merchbatch":1900938681,"retref":"342678160237","hostbatch":"8681","feeamnt":"0.00","action":"DEB","depamnt":"844.72"},{"merchbatch":1900938681,"retref":"342682160978","hostbatch":"8681","feeamnt":"0.00","action":"DEB","depamnt":"99.99"},{"merchbatch":1900938681,"retref":"342684160980","hostbatch":"8681","feeamnt":"0.00","action":"DEB","depamnt":"0.99"},{"merchbatch":1900938681,"retref":"342685161060","hostbatch":"8681","feeamnt":"0.00","action":"DEB","depamnt":"0.99"},{"merchbatch":1900938681,"retref":"342686161062","hostbatch":"8681","feeamnt":"0.00","action":"DEB","depamnt":"99.99"},{"merchbatch":1900938681,"retref":"342690162362","hostbatch":"8681","feeamnt":"0.00","action":"DEB","depamnt":"0.99"},{"merchbatch":1900938681,"retref":"342691162364","hostbatch":"8681","feeamnt":"0.00","action":"DEB","depamnt":"99.99"},{"merchbatch":1900938681,"retref":"342703163562","hostbatch":"8681","feeamnt":"0.00","action":"DEB","depamnt":"0.99"},{"merchbatch":1900938681,"retref":"342706163565","hostbatch":"8681","feeamnt":"0.00","action":"DEB","depamnt":"99.99"},{"merchbatch":1900938681,"retref":"342715163777","hostbatch":"8681","feeamnt":"0.00","action":"DEB","depamnt":"99.99"},{"merchbatch":1900938681,"retref":"342716163779","hostbatch":"8681","feeamnt":"0.00","action":"DEB","depamnt":"0.99"}],"amount":"4756.62","resptext":"","depositid":109,"merchid":"496160873888","action":"","actdate":"20141208"}]'
+    http_version: 
+  recorded_at: Tue, 09 Dec 2014 21:44:00 GMT
+recorded_with: VCR 2.9.3

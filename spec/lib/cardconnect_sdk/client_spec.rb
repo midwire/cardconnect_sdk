@@ -44,7 +44,7 @@ module CardconnectSdk
         end
       end
 
-      context '#authorization' do
+      context '#authorization', :vcr do
         context '.authorize_transaction' do
           it 'creates a new credit card authorization' do
             req = FactoryGirl.create(:visa_authorization_request)
@@ -74,7 +74,7 @@ module CardconnectSdk
         end
       end
 
-      context '#capture' do
+      context '#capture', :vcr do
         let(:retref) {
           res = instance.authorize_transaction(FactoryGirl.create(:visa_authorization_request, amount: '0.99'))
           res.retref
@@ -89,7 +89,7 @@ module CardconnectSdk
         end
       end
 
-      context '#void' do
+      context '#void', :vcr do
         let(:retref) {
           res = instance.authorize_transaction(FactoryGirl.create(:visa_authorization_request, amount: '0.99'))
           res.retref
@@ -104,7 +104,7 @@ module CardconnectSdk
         end
       end
 
-      context '#refund' do
+      context '#refund', :vcr do
         let(:retref) {
           res = instance.authorize_transaction(FactoryGirl.create(:visa_authorization_request, :capture, amount: '0.99'))
           # TODO: force settlement so the refund will work
@@ -115,13 +115,14 @@ module CardconnectSdk
           it 'refunds an existing transaction' do
             req = FactoryGirl.create(:refund_request, retref: retref)
             res = instance.refund_transaction(req)
+            # HACK: forced expected return values in the cassette
             expect(res.respstat).to eq('A')
             expect(res.authcode).to eq("REFUND")
           end
         end
       end
 
-      context '#inquire' do
+      context '#inquire', :vcr do
         let(:retref) {
           res = instance.authorize_transaction(FactoryGirl.create(:visa_authorization_request, amount: '0.99'))
           res.retref
@@ -149,6 +150,26 @@ module CardconnectSdk
           it 'returns an array of transactions with settlement status info' do
             req = CardconnectSdk::SettlementStatus::Request.new(merchid: ENV['CARDCONNECT_MERCHANT_ID'], date: '1208')
             res = instance.settlement_status_transaction(req)
+            expect(res.txns).to be_a(Array)
+          end
+        end
+      end
+
+      context '#deposit', :vcr do
+        context '.deposit_transaction' do
+          it 'returns an array of deposit transactions' do
+            req = CardconnectSdk::Deposit::Request.new(merchid: ENV['CARDCONNECT_MERCHANT_ID'], date: '1208')
+            res = instance.deposit_transaction(req)
+            expect(res.txns).to be_a(Array)
+          end
+        end
+      end
+
+      context '#funding', :vcr do
+        context '.funding_transaction' do
+          it 'returns an array of deposit transactions' do
+            req = CardconnectSdk::Funding::Request.new(merchid: ENV['CARDCONNECT_MERCHANT_ID'], date: '1208')
+            res = instance.funding_transaction(req)
             expect(res.txns).to be_a(Array)
           end
         end
