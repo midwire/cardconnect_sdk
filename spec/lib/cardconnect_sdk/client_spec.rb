@@ -153,6 +153,17 @@ module CardconnectSdk
           end
         end
       end
+
+      context '#deposit', focus: true do
+        context '.deposit_transaction' do
+          it 'returns an array of deposit transactions' do
+            req = CardconnectSdk::Deposit::Request.new(merchid: ENV['CARDCONNECT_MERCHANT_ID'], date: '1208')
+            res = instance.deposit_transaction(req)
+            binding.pry
+            expect(res.txns).to be_a(Array)
+          end
+        end
+      end
     end
   end
 end

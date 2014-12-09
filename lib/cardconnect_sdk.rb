@@ -13,5 +13,6 @@ module CardconnectSdk
   autoload :Refund,            'cardconnect_sdk/refund/refund'
   autoload :Inquire,           'cardconnect_sdk/inquire/inquire'
   autoload :SettlementStatus,  'cardconnect_sdk/settlement_status/settlement_status'
+  autoload :Deposit,           'cardconnect_sdk/deposit/deposit'
 
 end

@@ -9,6 +9,7 @@ module CardconnectSdk
     include Refund
     include Inquire
     include SettlementStatus
+    include Deposit
 
     attr_reader :url, :merchant_id, :username, :password
 
