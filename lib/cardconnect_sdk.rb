@@ -11,4 +11,7 @@ module CardconnectSdk
   autoload :Capture,           'cardconnect_sdk/capture/capture'
   autoload :Void,              'cardconnect_sdk/void/void'
   autoload :Refund,            'cardconnect_sdk/refund/refund'
+  autoload :Inquire,           'cardconnect_sdk/inquire/inquire'
+  autoload :SettlementStatus,  'cardconnect_sdk/settlement_status/settlement_status'
+
 end

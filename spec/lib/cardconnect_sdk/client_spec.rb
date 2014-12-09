@@ -107,6 +107,7 @@ module CardconnectSdk
       context '#refund' do
         let(:retref) {
           res = instance.authorize_transaction(FactoryGirl.create(:visa_authorization_request, :capture, amount: '0.99'))
+          # TODO: force settlement so the refund will work
           res.retref
         }
 
@@ -120,6 +121,38 @@ module CardconnectSdk
         end
       end
 
+      context '#inquire' do
+        let(:retref) {
+          res = instance.authorize_transaction(FactoryGirl.create(:visa_authorization_request, amount: '0.99'))
+          res.retref
+        }
+
+        context '.inquire_transaction' do
+          it 'returns "Txn not found" for an unknown transaction' do
+            req = FactoryGirl.create(:inquire_request, retref: 'CCSDK')
+            res = instance.inquire_transaction(req)
+            expect(res.respstat).to eq('C')
+            expect(res.resptext).to eq('Txn not found')
+          end
+
+          it 'returns "Authorized" for an authorized transaction' do
+            req = FactoryGirl.create(:inquire_request, retref: retref)
+            res = instance.inquire_transaction(req)
+            expect(res.respstat).to eq('A')
+            expect(res.setlstat).to eq("Authorized")
+          end
+        end
+      end
+
+      context '#settlement_status', :vcr do
+        context '.settlement_status_transaction' do
+          it 'returns an array of transactions with settlement status info' do
+            req = CardconnectSdk::SettlementStatus::Request.new(merchid: ENV['CARDCONNECT_MERCHANT_ID'], date: '1208')
+            res = instance.settlement_status_transaction(req)
+            expect(res.txns).to be_a(Array)
+          end
+        end
+      end
     end
   end
 end

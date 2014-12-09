@@ -7,6 +7,8 @@ module CardconnectSdk
     include Capture
     include Void
     include Refund
+    include Inquire
+    include SettlementStatus
 
     attr_reader :url, :merchant_id, :username, :password
 
