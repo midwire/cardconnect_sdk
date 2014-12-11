@@ -1,5 +1,7 @@
 require_relative 'request'
 require_relative 'response'
+require_relative 'batch'
+require_relative 'transaction'
 
 module CardconnectSdk
   module SettlementStatus

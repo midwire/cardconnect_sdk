@@ -1,5 +1,8 @@
 require_relative 'request'
 require_relative 'response'
+require_relative 'adjustment'
+require_relative 'funding_node'
+require_relative 'transaction'
 
 module CardconnectSdk
   module Funding
