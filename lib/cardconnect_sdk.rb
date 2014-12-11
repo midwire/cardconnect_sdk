@@ -15,5 +15,6 @@ module CardconnectSdk
   autoload :SettlementStatus,  'cardconnect_sdk/settlement_status/settlement_status'
   autoload :Deposit,           'cardconnect_sdk/deposit/deposit'
   autoload :Funding,           'cardconnect_sdk/funding/funding'
+  autoload :Profile,           'cardconnect_sdk/profile/profile'
 
 end

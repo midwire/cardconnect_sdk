@@ -11,6 +11,7 @@ module CardconnectSdk
     include SettlementStatus
     include Deposit
     include Funding
+    include Profile
 
     attr_reader :url, :merchant_id, :username, :password
 
