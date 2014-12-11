@@ -174,6 +174,118 @@ module CardconnectSdk
           end
         end
       end
+
+      context '#profile', :vcr do
+        context '.create_profile' do
+          it 'creates a new profile with a credit card account' do
+            req = FactoryGirl.create(:create_profile_request, :visa)
+            res = instance.create_profile(req)
+            expect(res.respstat).to eq('A')
+            expect(res.profileid).to match(/^[0-9]*$/)
+            expect(res.accttype).to eq('VISA')
+          end
+
+          it 'creates a new profile with an echeck account' do
+            req = FactoryGirl.create(:create_profile_request, :echeck)
+            res = instance.create_profile(req)
+            expect(res.respstat).to eq('A')
+            expect(res.profileid).to match(/^[0-9]*$/)
+            expect(res.accttype).to eq('ECHK')
+          end
+        end
+
+        context '.get_profile', :vcr do
+          let(:profileid) {
+            # create a profile with a cc and echeck account
+            req = FactoryGirl.create(:create_profile_request, :visa)
+            res = instance.create_profile(req)
+            profileid = res.profileid
+
+            req = FactoryGirl.create(:create_profile_request, :echeck, profile: profileid)
+            res = instance.create_profile(req)
+            profileid = res.profileid
+          }
+
+          it 'returns an existing profile with multiple accounts' do
+            req = FactoryGirl.create(:profile_request, profileid: profileid)
+            res = instance.get_profile(req)
+            expect(res.accounts.size).to eq(2)
+          end
+
+          it 'returns a specific account within a profile' do
+            req = FactoryGirl.create(:profile_request, profileid: profileid, acctid: '1')
+            res = instance.get_profile(req)
+            expect(res.accounts.size).to eq(1)
+            expect(res.accounts.first.acctid).to eq('1')
+          end
+
+        end
+
+        context '.update_profile' do
+          let(:profile) {
+            # create a profile with an echeck account
+            req = FactoryGirl.create(:create_profile_request, :echeck)
+            res = instance.create_profile(req)            
+          }
+
+          it 'updates an existing profile' do
+            req = FactoryGirl.create(:create_profile_request, :update, 
+              profile: "#{profile.profileid}/#{profile.acctid}", 
+              name: 'TOMMY JONES', phone: '8015551234')
+            res = instance.update_profile(req)
+            expect(res.respstat).to eq('A')
+            expect(res.name).to eq('TOMMY JONES')
+            expect(res.phone).to eq('8015551234')
+          end
+        end
+
+        context '.delete_profile' do
+          let(:profile) {
+            req = FactoryGirl.create(:create_profile_request, :visa)
+            res = instance.create_profile(req)
+            profileid = res.profileid
+
+            req = FactoryGirl.create(:create_profile_request, :echeck, profile: profileid)
+            res = instance.create_profile(req)        
+
+            profile = instance.get_profile(FactoryGirl.create(:profile_request, profileid: profileid))              
+          }
+
+          it 'deletes an existing profile with multiple accounts' do
+            req = FactoryGirl.create(:delete_profile_request, 
+              profileid: profile.profileid)
+            res = instance.delete_profile(req)
+            expect(res.respstat).to eq('A')
+            expect(res.respcode).to eq('08')
+          end
+
+          it 'deletes a non-default account from an existing profile' do
+            non_default_acctid = profile.accounts.detect { |a| a.defaultacct == 'N' }.acctid
+
+            req = FactoryGirl.create(:delete_profile_request, 
+              profileid: profile.profileid, acctid: non_default_acctid)
+            res = instance.delete_profile(req)
+            expect(res.respstat).to eq('A')
+            expect(res.respcode).to eq('08')
+
+            # requery the profile to ensure only the 1 account was deleted
+            req = FactoryGirl.create(:profile_request, profileid: profile.profileid)
+            res = instance.get_profile(req)
+            expect(res.accounts.size).to eq(1)
+            expect(res.accounts.first.acctid).to_not eq(non_default_acctid)
+          end
+
+          it 'fails to delete a default account from an existing profile' do
+            default_acctid = profile.accounts.detect { |a| a.defaultacct == 'Y' }.acctid
+
+            req = FactoryGirl.create(:delete_profile_request, 
+              profileid: profile.profileid, acctid: default_acctid)
+            res = instance.delete_profile(req)
+            expect(res.respstat).to eq('C')
+            expect(res.respcode).to eq('34') # Invalid field
+          end
+        end
+      end
     end
   end
 end
