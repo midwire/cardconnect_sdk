@@ -3,14 +3,39 @@ module CardconnectSdk
     class Response
       include Attributable
 
-      attr_reader :txns
+      attr_reader :merchid, :fundingmasterid, :fundingdate, :datechanged
 
-      def initialize(json)
-        @txns = JSON.parse(json)["txns"]
+      attr_reader :txns, :fundings, :adjustments
+
+      def initialize(attrs={})
+        attrs.symbolize_keys!
+        txns        = attrs.delete(:txns)
+        fundings    = attrs.delete(:fundings)
+        adjustments = attrs.delete(:adjustments)
+
+        super(attrs)
+
+        unpack_txns(txns)
+        unpack_fundings(fundings)
+        unpack_adjustments(adjustments)
       end
 
       def self.from_json(json)
-        self.new(json)
+        self.new(JSON.parse(json))
+      end
+
+      private
+
+      def unpack_txns(txns=[])
+        @txns = txns.map { |tx| Transaction.new(tx) }
+      end
+
+      def unpack_fundings(fundings=[])
+        @fundings = fundings.map { |f| FundingNode.new(f) }
+      end
+
+      def unpack_adjustments(adjustments=[])
+        @adjustments = adjustments.map { |adj| Adjustment.new(adj) }
       end
 
     end

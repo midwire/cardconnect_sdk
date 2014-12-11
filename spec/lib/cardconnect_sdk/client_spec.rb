@@ -150,7 +150,13 @@ module CardconnectSdk
           it 'returns an array of transactions with settlement status info' do
             req = CardconnectSdk::SettlementStatus::Request.new(merchid: ENV['CARDCONNECT_MERCHANT_ID'], date: '1208')
             res = instance.settlement_status_transaction(req)
-            expect(res.txns).to be_a(Array)
+            expect(res.batches).to be_a(Array)
+
+            batch = res.batches.first
+            expect(batch).to be_a(CardconnectSdk::SettlementStatus::Batch)
+
+            txn = batch.txns.first
+            expect(txn).to be_a(CardconnectSdk::SettlementStatus::Transaction)
           end
         end
       end
@@ -173,10 +179,21 @@ module CardconnectSdk
 
       context '#funding', :vcr do
         context '.funding_transaction' do
-          it 'returns an array of deposit transactions' do
+          it 'returns an array of funding transactions' do
             req = CardconnectSdk::Funding::Request.new(merchid: ENV['CARDCONNECT_MERCHANT_ID'], date: '1208')
             res = instance.funding_transaction(req)
-            expect(res.txns).to be_a(Array)
+            
+            expect(res.txns).to be_a(Array)            
+            txn = res.txns.first
+            expect(txn).to be_a(CardconnectSdk::Funding::Transaction)
+
+            expect(res.fundings).to be_a(Array)
+            funding = res.fundings.first
+            expect(funding).to be_a(CardconnectSdk::Funding::FundingNode)
+
+            expect(res.adjustments).to be_a(Array)
+            adjustment = res.adjustments.first
+            expect(adjustment).to be_a(CardconnectSdk::Funding::Adjustment)
           end
         end
       end

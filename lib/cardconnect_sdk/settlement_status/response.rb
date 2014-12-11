@@ -3,14 +3,17 @@ module CardconnectSdk
     class Response
       include Attributable
 
-      attr_reader :txns
+      attr_reader :batches
 
-      def initialize(json)
-        @txns = JSON.parse(json)
+      def initialize(batches=[])
+        @batches = []
+        batches.each do |batch|
+          @batches << Batch.new(batch)
+        end
       end
 
       def self.from_json(json)
-        self.new(json)
+        self.new(JSON.parse(json))
       end
 
     end

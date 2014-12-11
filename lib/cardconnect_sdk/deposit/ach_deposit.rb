@@ -24,10 +24,7 @@ module CardconnectSdk
       private
 
       def unpack_txns(txns=[])
-        @txns = []
-        txns.each do |tx|
-          @txns << Transaction.new(tx)
-        end
+        @txns = txns.map { |tx| Transaction.new(tx) }
       end
     end
   end
