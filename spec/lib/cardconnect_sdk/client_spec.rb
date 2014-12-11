@@ -160,7 +160,13 @@ module CardconnectSdk
           it 'returns an array of deposit transactions' do
             req = CardconnectSdk::Deposit::Request.new(merchid: ENV['CARDCONNECT_MERCHANT_ID'], date: '1208')
             res = instance.deposit_transaction(req)
-            expect(res.txns).to be_a(Array)
+            expect(res.deposits).to be_a(Array)
+
+            deposit = res.deposits.first
+            expect(deposit).to be_a(CardconnectSdk::Deposit::AchDeposit)
+
+            txn = deposit.txns.first
+            expect(txn).to be_a(CardconnectSdk::Deposit::Transaction)
           end
         end
       end

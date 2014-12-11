@@ -3,14 +3,17 @@ module CardconnectSdk
     class Response
       include Attributable
 
-      attr_reader :txns
+      attr_reader :deposits
 
-      def initialize(json)
-        @txns = JSON.parse(json)
+      def initialize(deposits=[])
+        @deposits = []
+        deposits.each do |dep|
+          @deposits << AchDeposit.new(dep)
+        end
       end
 
       def self.from_json(json)
-        self.new(json)
+        self.new(JSON.parse(json))
       end
 
     end
