@@ -17,9 +17,9 @@ module CardconnectSdk
         unpack_txns(txns)
       end
 
-      def self.from_json(json)
-        self.new(JSON.parse(json))
-      end
+      # def self.from_json(json)
+      #   self.new(JSON.parse(json))
+      # end
 
       private
 

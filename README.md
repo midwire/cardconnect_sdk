@@ -28,7 +28,6 @@ TODO: Write usage instructions here
 * Get the Refund method to work with a transaction that's settled
 * Implement Authorization#userfields (if necessary)
 * Improve Specs for Responses
-* Get rcov configured
 
 ## Contributing
 
