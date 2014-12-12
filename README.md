@@ -26,11 +26,9 @@ TODO: Write usage instructions here
 ## Development TODO List
 
 * Get the Refund method to work with a transaction that's settled
-* Wrap the returned transactions (txns) from...
-> * Settlement Status
-> * Deposit
-> * Funding
 * Implement Authorization#userfields (if necessary)
+* Improve Specs for Responses
+* Get rcov configured
 
 ## Contributing
 
