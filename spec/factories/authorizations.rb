@@ -45,4 +45,16 @@ FactoryGirl.define do
     end
   end
 
+  factory :profile_authorization_request, class: CardconnectSdk::Authorization::Request do
+    merchid ENV['CARDCONNECT_MERCHANT_ID']
+    profile nil # this needs to be specified in the spec/setup
+    amount '100.00'
+    currency 'USD'
+    ecomind 'E'
+
+    trait :capture do
+      capture 'Y'
+    end
+  end
+
 end
