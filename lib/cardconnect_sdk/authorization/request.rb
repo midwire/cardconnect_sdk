@@ -6,7 +6,7 @@ module CardconnectSdk
       # Standard Attributes for all authorizations
       attr_accessor :merchid, :accttype, :orderid, :account, :amount, :currency,
                     :name, :address, :city, :region, :country, :postal, :email,
-                    :ecomind, :tokenize, :capture
+                    :ecomind, :tokenize, :capture, :profile
 
       # Credit Card Attributes
       attr_accessor :expiry, :cvv2, :track

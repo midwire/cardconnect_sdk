@@ -65,11 +65,26 @@ module CardconnectSdk
             expect(res.respstat).to eq('A')
           end
 
-          it 'creates a new echeck authorization', :vcr do
+          it 'creates a new echeck authorization' do
             req = FactoryGirl.create(:echeck_authorization_request)
             res = instance.authorize_transaction(req)
             expect(res).to be_a(CardconnectSdk::Authorization::Response)
             expect(res.respstat).to eq('A')
+          end
+
+          context '#with a profile' do
+            let(:profile) do
+              req = FactoryGirl.create(:create_profile_request, :visa)
+              instance.create_profile(req)
+            end
+
+            it 'creates a new authorization' do
+              req = FactoryGirl.create(:profile_authorization_request, :capture, 
+                profile: "#{profile.profileid}/#{profile.acctid}" )
+              res = instance.authorize_transaction(req)
+              expect(res).to be_a(CardconnectSdk::Authorization::Response)
+              expect(res.respstat).to eq('A')
+            end
           end
         end
       end
