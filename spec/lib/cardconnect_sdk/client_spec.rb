@@ -176,6 +176,7 @@ module CardconnectSdk
 
             txn = batch.txns.first
             expect(txn).to be_a(CardconnectSdk::SettlementStatus::Transaction)
+            expect(txn.retref).to match(/^[0-9]+$/)
           end
         end
       end
@@ -192,6 +193,7 @@ module CardconnectSdk
 
             txn = deposit.txns.first
             expect(txn).to be_a(CardconnectSdk::Deposit::Transaction)
+            expect(txn.retref).to match(/^[0-9]+$/)
           end
         end
       end
@@ -205,14 +207,17 @@ module CardconnectSdk
             expect(res.txns).to be_a(Array)            
             txn = res.txns.first
             expect(txn).to be_a(CardconnectSdk::Funding::Transaction)
+            expect(txn.retref).to match(/^[0-9]+$/)
 
             expect(res.fundings).to be_a(Array)
             funding = res.fundings.first
             expect(funding).to be_a(CardconnectSdk::Funding::FundingNode)
+            expect(funding.fundingid).to match(/^[0-9]+$/)
 
             expect(res.adjustments).to be_a(Array)
             adjustment = res.adjustments.first
             expect(adjustment).to be_a(CardconnectSdk::Funding::Adjustment)
+            expect(adjustment.fundingadjustmentid).to match(/^[0-9]+$/)
           end
         end
       end

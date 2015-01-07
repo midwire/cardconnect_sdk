@@ -8,7 +8,7 @@ module CardconnectSdk
       attr_reader :txns
 
       def initialize(attrs={})
-        attrs.symbolize_keys!
+        attrs.deep_symbolize_keys!
         txns = attrs.delete(:txns)
 
         super(attrs)

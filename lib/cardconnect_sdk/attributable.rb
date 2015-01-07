@@ -45,7 +45,7 @@ module Attributable
     end
 
     def from_json(json)
-      self.new(JSON.parse(json).symbolize_keys)
+      self.new(JSON.parse(json).deep_symbolize_keys)
     end
   end
 end

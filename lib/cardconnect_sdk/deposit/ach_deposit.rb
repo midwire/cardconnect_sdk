@@ -9,17 +9,13 @@ module CardconnectSdk
       attr_reader :txns
 
       def initialize(attrs={})
-        attrs.symbolize_keys!
+        attrs.deep_symbolize_keys!
         txns = attrs.delete(:txns)
 
         super(attrs)
 
         unpack_txns(txns)
       end
-
-      # def self.from_json(json)
-      #   self.new(JSON.parse(json))
-      # end
 
       private
 
