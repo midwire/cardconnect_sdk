@@ -2,6 +2,7 @@ module CardconnectSdk
   module Inquire
     class Response
       include Attributable
+      include Helpers::Response
 
       attr_reader :amount, :currency, :resptext, :setlstat, :authcode, :respcode,
                   :retref, :merchid, :account, :respproc, :respstat

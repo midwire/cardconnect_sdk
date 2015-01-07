@@ -2,6 +2,7 @@ module CardconnectSdk
   module Profile
     class DeleteResponse
       include Attributable
+      include Helpers::Response
 
       # Standard Attributes for profile deletion
       attr_reader :profileid, :acctid, :resptext, :respcode, :respproc, :respstat

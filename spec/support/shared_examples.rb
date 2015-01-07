@@ -19,7 +19,7 @@ shared_examples 'approved, retry, or declined' do
       expect(_retry).to be_retry
     end
 
-    it "retrusn false when respstat != 'B'" do
+    it "returns false when respstat != 'B'" do
       expect(_approved).to_not be_retry
       expect(_declined).to_not be_retry
     end
