@@ -223,7 +223,7 @@ module CardconnectSdk
             req = FactoryGirl.create(:create_profile_request, :visa)
             res = instance.create_profile(req)
             expect(res).to be_approved
-            expect(res.profileid).to match(/^[0-9]*$/)
+            expect(res.profileid).to match(/^[0-9]+$/)
             expect(res.accttype).to eq('VISA')
           end
 
@@ -231,7 +231,7 @@ module CardconnectSdk
             req = FactoryGirl.create(:create_profile_request, :echeck)
             res = instance.create_profile(req)
             expect(res).to be_approved
-            expect(res.profileid).to match(/^[0-9]*$/)
+            expect(res.profileid).to match(/^[0-9]+$/)
             expect(res.accttype).to eq('ECHK')
           end
         end
