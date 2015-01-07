@@ -8,7 +8,7 @@ module CardconnectSdk
       attr_reader :txns, :fundings, :adjustments
 
       def initialize(attrs={})
-        attrs.symbolize_keys!
+        attrs.deep_symbolize_keys!
         txns        = attrs.delete(:txns)
         fundings    = attrs.delete(:fundings)
         adjustments = attrs.delete(:adjustments)
@@ -18,10 +18,6 @@ module CardconnectSdk
         unpack_txns(txns)
         unpack_fundings(fundings)
         unpack_adjustments(adjustments)
-      end
-
-      def self.from_json(json)
-        self.new(JSON.parse(json))
       end
 
       private

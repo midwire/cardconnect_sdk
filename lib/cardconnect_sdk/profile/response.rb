@@ -5,17 +5,21 @@ module CardconnectSdk
 
       attr_reader :profileid, :accounts
 
-      def initialize(json)
-        # inflate accounts from json
-        @accounts = JSON.parse(json).map { |a| Account.new(a.symbolize_keys) }
-      end
-
-      def self.from_json(json)
-        self.new(json)
+      def initialize(accounts=[])
+        @accounts = []
+        accounts.each do |account|
+          @accounts << Account.new(account.deep_symbolize_keys)
+        end
       end
 
       def profileid
         @profileid ||= accounts.first.profileid rescue ''
+      end
+
+      # Overridden because the json returns an array instead of
+      # a typical hash, so deep_stringify_keys would fail.
+      def self.from_json(json)
+        self.new(JSON.parse(json))
       end
     end
   end
