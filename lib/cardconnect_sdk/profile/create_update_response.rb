@@ -2,7 +2,8 @@ module CardconnectSdk
   module Profile
     class CreateUpdateResponse
       include Attributable
-
+      include Helpers::Response
+      
       # Standard Attributes for profiles
       attr_reader :profileid, :acctid, :accttype, :defaultacct, :token,
                   :respstat, :resptext, :respcode, :respproc

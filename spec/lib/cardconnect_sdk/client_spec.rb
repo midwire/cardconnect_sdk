@@ -46,11 +46,16 @@ module CardconnectSdk
 
       context '#authorization', :vcr do
         context '.authorize_transaction' do
-          it 'creates a new credit card authorization' do
+          it 'returns a CardconnectSdk::Authorization::Response' do
             req = FactoryGirl.create(:visa_authorization_request)
             res = instance.authorize_transaction(req)
             expect(res).to be_a(CardconnectSdk::Authorization::Response)
-            expect(res.respstat).to eq('A')
+          end
+
+          it 'creates a new credit card authorization' do
+            req = FactoryGirl.create(:visa_authorization_request)
+            res = instance.authorize_transaction(req)
+            expect(res).to be_approved
           end
 
           it 'creates a new tokenized credit card authorization' do
@@ -62,14 +67,14 @@ module CardconnectSdk
           it 'creates a new capture credit card authorization' do
             req = FactoryGirl.create(:visa_authorization_request, :capture, amount: '99.99')
             res = instance.authorize_transaction(req)
-            expect(res.respstat).to eq('A')
+            expect(res).to be_approved
+            expect(res.authcode).to_not be_nil
           end
 
           it 'creates a new echeck authorization' do
             req = FactoryGirl.create(:echeck_authorization_request)
             res = instance.authorize_transaction(req)
-            expect(res).to be_a(CardconnectSdk::Authorization::Response)
-            expect(res.respstat).to eq('A')
+            expect(res).to be_approved
           end
 
           context '#with a profile' do
@@ -82,8 +87,7 @@ module CardconnectSdk
               req = FactoryGirl.create(:profile_authorization_request, :capture, 
                 profile: "#{profile.profileid}/#{profile.acctid}" )
               res = instance.authorize_transaction(req)
-              expect(res).to be_a(CardconnectSdk::Authorization::Response)
-              expect(res.respstat).to eq('A')
+              expect(res).to be_approved
             end
           end
         end
@@ -131,7 +135,7 @@ module CardconnectSdk
             req = FactoryGirl.create(:refund_request, retref: retref)
             res = instance.refund_transaction(req)
             # HACK: forced expected return values in the cassette
-            expect(res.respstat).to eq('A')
+            expect(res).to be_approved
             expect(res.authcode).to eq("REFUND")
           end
         end
@@ -147,14 +151,14 @@ module CardconnectSdk
           it 'returns "Txn not found" for an unknown transaction' do
             req = FactoryGirl.create(:inquire_request, retref: 'CCSDK')
             res = instance.inquire_transaction(req)
-            expect(res.respstat).to eq('C')
+            expect(res).to be_declined
             expect(res.resptext).to eq('Txn not found')
           end
 
           it 'returns "Authorized" for an authorized transaction' do
             req = FactoryGirl.create(:inquire_request, retref: retref)
             res = instance.inquire_transaction(req)
-            expect(res.respstat).to eq('A')
+            expect(res).to be_approved
             expect(res.setlstat).to eq("Authorized")
           end
         end
@@ -218,7 +222,7 @@ module CardconnectSdk
           it 'creates a new profile with a credit card account' do
             req = FactoryGirl.create(:create_profile_request, :visa)
             res = instance.create_profile(req)
-            expect(res.respstat).to eq('A')
+            expect(res).to be_approved
             expect(res.profileid).to match(/^[0-9]*$/)
             expect(res.accttype).to eq('VISA')
           end
@@ -226,7 +230,7 @@ module CardconnectSdk
           it 'creates a new profile with an echeck account' do
             req = FactoryGirl.create(:create_profile_request, :echeck)
             res = instance.create_profile(req)
-            expect(res.respstat).to eq('A')
+            expect(res).to be_approved
             expect(res.profileid).to match(/^[0-9]*$/)
             expect(res.accttype).to eq('ECHK')
           end
@@ -271,7 +275,7 @@ module CardconnectSdk
               profile: "#{profile.profileid}/#{profile.acctid}", 
               name: 'TOMMY JONES', phone: '8015551234')
             res = instance.update_profile(req)
-            expect(res.respstat).to eq('A')
+            expect(res).to be_approved
             expect(res.name).to eq('TOMMY JONES')
             expect(res.phone).to eq('8015551234')
           end
@@ -293,7 +297,7 @@ module CardconnectSdk
             req = FactoryGirl.create(:delete_profile_request, 
               profileid: profile.profileid)
             res = instance.delete_profile(req)
-            expect(res.respstat).to eq('A')
+            expect(res).to be_approved
             expect(res.respcode).to eq('08')
           end
 
@@ -303,7 +307,7 @@ module CardconnectSdk
             req = FactoryGirl.create(:delete_profile_request, 
               profileid: profile.profileid, acctid: non_default_acctid)
             res = instance.delete_profile(req)
-            expect(res.respstat).to eq('A')
+            expect(res).to be_approved
             expect(res.respcode).to eq('08')
 
             # requery the profile to ensure only the 1 account was deleted
@@ -319,7 +323,7 @@ module CardconnectSdk
             req = FactoryGirl.create(:delete_profile_request, 
               profileid: profile.profileid, acctid: default_acctid)
             res = instance.delete_profile(req)
-            expect(res.respstat).to eq('C')
+            expect(res).to be_declined
             expect(res.respcode).to eq('34') # Invalid field
           end
         end
