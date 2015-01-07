@@ -12,6 +12,8 @@ module CardconnectSdk
         end
       end
 
+      # Overridden because the json returns an array instead of
+      # a typical hash, so deep_stringify_keys would fail.
       def self.from_json(json)
         self.new(JSON.parse(json))
       end
