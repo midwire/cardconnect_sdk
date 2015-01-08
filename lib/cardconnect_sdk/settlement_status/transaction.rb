@@ -5,6 +5,9 @@ module CardconnectSdk
 
       attr_reader :setlstat, :retref
       
+      def settled?
+        setlstat == 'Y'
+      end
     end
   end
 end
