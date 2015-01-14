@@ -1,0 +1,86 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://testing:testing123@fts.prinpay.com:6443/cardconnect/rest/auth
+    body:
+      encoding: UTF-8
+      string: '{"merchid":"496160873888","accttype":"VISA","orderid":"CCSDK-2014-12-25","account":"4111111111111111","amount":"0.99","currency":"USD","name":"TOM
+        JONES","address":"123 MAIN STREET","city":"MIDVALE","region":"UT","country":"US","postal":"84047","ecomind":"E","expiry":"1215","cvv2":"123"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '288'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - DENY
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '231'
+      Date:
+      - Tue, 09 Dec 2014 21:48:01 GMT
+      Set-Cookie:
+      - cardconnect=!EJV2KMOryuqOH0UTV5iS4B8SouVgtKa4RbPpQQ9U4dg94WHiBRxOjD4oT23zGBdgycF/WDAucizsRE4=;
+        path=/
+    body:
+      encoding: UTF-8
+      string: '{"amount":"0.99","resptext":"Approval","authcode":"PPS891","respcode":"00","retref":"343047160481","merchid":"496160873888","account":"9418594164541111","cvvresp":"M","commcard":"AC
+        ","avsresp":"Z","respstat":"A","respproc":"FNOR"}'
+    http_version: 
+  recorded_at: Tue, 09 Dec 2014 21:48:04 GMT
+- request:
+    method: put
+    uri: https://testing:testing123@fts.prinpay.com:6443/cardconnect/rest/capture
+    body:
+      encoding: UTF-8
+      string: '{"merchid":"496160873888","retref":"343047160481","amount":"0.99"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '66'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - DENY
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '232'
+      Date:
+      - Tue, 09 Dec 2014 21:48:01 GMT
+      Set-Cookie:
+      - cardconnect=!RFdvtBqKYVrv4k4TV5iS4B8SouVgtKPbdOsYuhyZ+idi3TiPV2add3WqUfhxyXefTKkQt8qciOLqcPo=;
+        path=/
+    body:
+      encoding: UTF-8
+      string: '{"amount":"0.99","resptext":"Approval","setlstat":"Queued for Capture","respcode":"00","retref":"343047160481","merchid":"496160873888","defaultacct":"","account":"9418594164541111","commcard":"AC
+        ","respstat":"A","respproc":"FNOR"}'
+    http_version: 
+  recorded_at: Tue, 09 Dec 2014 21:48:04 GMT
+recorded_with: VCR 2.9.3

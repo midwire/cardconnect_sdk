@@ -1,0 +1,80 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://testing:testing123@fts.prinpay.com:6443/cardconnect/rest/profile
+    body:
+      encoding: UTF-8
+      string: '{"merchid":"496160873888","accttype":"VISA","account":"4111111111111111","name":"TOM
+        JONES","street":"123 MAIN STREET","city":"MIDVALE","region":"UT","country":"US","postal":"84047","phone":"8015551212","email":"tom.jones@example.com","expiry":"1215"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '251'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - DENY
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '353'
+      Date:
+      - Tue, 06 Jan 2015 19:49:13 GMT
+    body:
+      encoding: UTF-8
+      string: '{"region":"UT","acctid":"1","phone":"8015551212","postal":"84047","accttype":"VISA","defaultacct":"Y","profileid":"11446681769924840446","respproc":"PPS","city":"MIDVALE","country":"US","expiry":"1215","resptext":"Profile
+        Saved","email":"tom.jones@example.com","token":"9418594164541111","respcode":"09","name":"TOM
+        JONES","auoptout":"N","respstat":"A"}'
+    http_version: 
+  recorded_at: Tue, 06 Jan 2015 19:49:13 GMT
+- request:
+    method: put
+    uri: https://testing:testing123@fts.prinpay.com:6443/cardconnect/rest/auth
+    body:
+      encoding: UTF-8
+      string: '{"merchid":"496160873888","amount":"100.00","currency":"USD","ecomind":"E","capture":"Y","profile":"11446681769924840446/1"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '124'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - DENY
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '281'
+      Date:
+      - Tue, 06 Jan 2015 19:49:32 GMT
+    body:
+      encoding: UTF-8
+      string: '{"acctid":"1","retref":"006617153372","commcard":"AC ","avsresp":"Z","profileid":"11446681769924840446","respproc":"FNOR","amount":"100.00","resptext":"Approval","authcode":"PPS596","respcode":"00","merchid":"496160873888","cvvresp":"P","account":"9418594164541111","respstat":"A"}'
+    http_version: 
+  recorded_at: Tue, 06 Jan 2015 19:49:32 GMT
+recorded_with: VCR 2.9.3

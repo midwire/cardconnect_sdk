@@ -1,6 +1,7 @@
 # CardconnectSdk
 
-TODO: Write a gem description
+CardconnectSdk wraps the CardConnect JSON API in a ruby wrapper
+See: http://www.cardconnect.com/developer/docs/
 
 ## Installation
 
@@ -21,6 +22,12 @@ Or install it yourself as:
 ## Usage
 
 TODO: Write usage instructions here
+
+## Development TODO List
+
+* Get the Refund method to work with a transaction that's settled
+* Implement Authorization#userfields (if necessary)
+* Improve Specs for Responses
 
 ## Contributing
 

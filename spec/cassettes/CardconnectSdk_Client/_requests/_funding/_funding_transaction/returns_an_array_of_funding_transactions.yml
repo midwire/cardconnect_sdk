@@ -1,0 +1,41 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://testing:testing123@fts.prinpay.com:6443/cardconnect/rest/funding?date=1208&merchid=496160873888
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - DENY
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2109'
+      Date:
+      - Thu, 11 Dec 2014 23:19:37 GMT
+      Set-Cookie:
+      - cardconnect=!Wj/CeTQH89YXGfMTV5iS4B8SouVgtEGU+YQWajtqtZfmKlEVdkAjHcRCWq7JYYt3S74AGLoR+BUr5H4=;
+        path=/
+    body:
+      encoding: UTF-8
+      string: '{"txns":[{"cardtype":"Credit","status":"Processed","retref":"341152151954","interchangeunitfee":0,"cardnumber":"44XXXXXXXXXX1111","type":"SALE","fundingid":342171125216,"interchangepercentfee":0,"date":"2014-12-07","currency":"USD","cardbrand":"VISA","amount":55014,"fundingtxnid":342168125216},{"cardtype":"Credit","status":"Processed","retref":"340126186212","interchangeunitfee":0,"cardnumber":"44XXXXXXXXXX1111","type":"SALE","fundingid":342172125216,"interchangepercentfee":0,"date":"2014-12-06","currency":"USD","cardbrand":"VISA","amount":10,"fundingtxnid":342168125216},{"cardtype":"Credit","status":"Processed","retref":"340120170386","interchangeunitfee":0,"cardnumber":"44XXXXXXXXXX1111","type":"SALE","fundingid":342173125216,"interchangepercentfee":0,"date":"2014-12-06","currency":"USD","cardbrand":"VISA","amount":84472,"fundingtxnid":342168125216},{"cardtype":"Credit","status":"Processed","retref":"340125186071","interchangeunitfee":0,"cardnumber":"44XXXXXXXXXX1111","type":"SALE","fundingid":342174125216,"interchangepercentfee":0,"date":"2014-12-06","currency":"USD","cardbrand":"VISA","amount":10,"fundingtxnid":342168125216},{"cardtype":"Credit","status":"Processed","retref":"340122170565","interchangeunitfee":0,"cardnumber":"44XXXXXXXXXX1111","type":"SALE","fundingid":342175125216,"interchangepercentfee":0,"date":"2014-12-06","currency":"USD","cardbrand":"VISA","amount":84472,"fundingtxnid":342168125216}],"fundingdate":"2014-12-08","merchid":"496160873888","datechanged":null,"fundings":[{"totalfunding":223978,"ddanumber":"3300770540","datechanged":"2014-12-08","interchangefee":0,"fundingid":342170125216,"fundingmasterid":342168125216,"servicecharge":0,"currency":"USD","fee":0,"dateadded":"2014-12-08","adjustment":0,"netsales":223978,"thirdparty":0,"otheradjustment":0,"reversal":0,"abanumber":"121140399"}],"fundingmasterid":342168125216,"adjustments":[{"amount":0,"category":null,"dateadded":"2014-12-08","description":null,"merchid":"496160873888","datechanged":"2014-12-08","type":null,"fundingmasterid":342168125216,"fundingadjustmentid":342169125216,"currency":"USD"}]}'
+    http_version: 
+  recorded_at: Thu, 11 Dec 2014 23:19:40 GMT
+recorded_with: VCR 2.9.3

@@ -1,0 +1,77 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://testing:testing123@fts.prinpay.com:6443/cardconnect/rest/auth
+    body:
+      encoding: UTF-8
+      string: '{"merchid":"496160873888","accttype":"VISA","orderid":"CCSDK-2014-12-25","account":"4111111111111111","amount":"0.99","currency":"USD","name":"TOM
+        JONES","address":"123 MAIN STREET","city":"MIDVALE","region":"UT","country":"US","postal":"84047","ecomind":"E","expiry":"1215","cvv2":"123"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '288'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - DENY
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '231'
+      Date:
+      - Tue, 09 Dec 2014 21:44:02 GMT
+    body:
+      encoding: UTF-8
+      string: '{"amount":"0.99","resptext":"Approval","authcode":"PPS874","respcode":"00","retref":"343030160242","merchid":"496160873888","account":"9418594164541111","cvvresp":"M","commcard":"AC
+        ","avsresp":"Z","respstat":"A","respproc":"FNOR"}'
+    http_version: 
+  recorded_at: Tue, 09 Dec 2014 21:44:05 GMT
+- request:
+    method: get
+    uri: https://testing:testing123@fts.prinpay.com:6443/cardconnect/rest/inquire/343030160242/496160873888
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - DENY
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '207'
+      Date:
+      - Tue, 09 Dec 2014 21:44:02 GMT
+    body:
+      encoding: UTF-8
+      string: '{"amount":"0.99","resptext":"Approval","setlstat":"Authorized","respcode":"00","retref":"343030160242","merchid":"496160873888","account":"9418594164541111","currency":"USD","respstat":"A","respproc":"FNOR"}'
+    http_version: 
+  recorded_at: Tue, 09 Dec 2014 21:44:05 GMT
+recorded_with: VCR 2.9.3

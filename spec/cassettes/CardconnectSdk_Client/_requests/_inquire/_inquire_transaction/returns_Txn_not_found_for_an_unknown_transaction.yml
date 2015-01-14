@@ -1,0 +1,38 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://testing:testing123@fts.prinpay.com:6443/cardconnect/rest/inquire/CCSDK/496160873888
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - DENY
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '93'
+      Date:
+      - Tue, 09 Dec 2014 21:44:01 GMT
+    body:
+      encoding: UTF-8
+      string: '{"resptext":"Txn not found","respcode":"29","retref":"CCSDK","respstat":"C","respproc":"PPS"}'
+    http_version: 
+  recorded_at: Tue, 09 Dec 2014 21:44:04 GMT
+recorded_with: VCR 2.9.3

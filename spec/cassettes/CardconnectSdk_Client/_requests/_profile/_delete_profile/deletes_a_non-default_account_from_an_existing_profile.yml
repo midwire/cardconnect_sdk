@@ -1,0 +1,191 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://testing:testing123@fts.prinpay.com:6443/cardconnect/rest/profile
+    body:
+      encoding: UTF-8
+      string: '{"merchid":"496160873888","accttype":"VISA","account":"4111111111111111","name":"TOM
+        JONES","street":"123 MAIN STREET","city":"MIDVALE","region":"UT","country":"US","postal":"84047","phone":"8015551212","email":"tom.jones@example.com","expiry":"1215"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '251'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - DENY
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '353'
+      Date:
+      - Thu, 11 Dec 2014 19:25:09 GMT
+    body:
+      encoding: UTF-8
+      string: '{"region":"UT","acctid":"1","phone":"8015551212","postal":"84047","accttype":"VISA","defaultacct":"Y","profileid":"16119544912843682300","respproc":"PPS","city":"MIDVALE","country":"US","expiry":"1215","resptext":"Profile
+        Saved","email":"tom.jones@example.com","token":"9418594164541111","respcode":"09","name":"TOM
+        JONES","auoptout":"N","respstat":"A"}'
+    http_version: 
+  recorded_at: Thu, 11 Dec 2014 19:25:11 GMT
+- request:
+    method: put
+    uri: https://testing:testing123@fts.prinpay.com:6443/cardconnect/rest/profile
+    body:
+      encoding: UTF-8
+      string: '{"merchid":"496160873888","profile":"16119544912843682300","account":"123123123123","name":"TOM
+        JONES","street":"123 MAIN STREET","city":"MIDVALE","region":"UT","country":"US","postal":"84047","phone":"8015551212","email":"tom.jones@example.com","bankaba":"124001545","ssnl4":"7890","license":"UT:98989898"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '307'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - DENY
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '376'
+      Date:
+      - Thu, 11 Dec 2014 19:25:11 GMT
+    body:
+      encoding: UTF-8
+      string: '{"region":"UT","acctid":"2","phone":"8015551212","postal":"84047","accttype":"ECHK","ssnl4":"7890","defaultacct":"N","profileid":"16119544912843682300","respproc":"PPS","city":"MIDVALE","country":"US","resptext":"Profile
+        Saved","email":"tom.jones@example.com","token":"9124468384113123","respcode":"09","name":"TOM
+        JONES","license":"UT:98989898","auoptout":"N","respstat":"A"}'
+    http_version: 
+  recorded_at: Thu, 11 Dec 2014 19:25:12 GMT
+- request:
+    method: get
+    uri: https://testing:testing123@fts.prinpay.com:6443/cardconnect/rest/profile/16119544912843682300//496160873888
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - DENY
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '582'
+      Date:
+      - Thu, 11 Dec 2014 19:25:11 GMT
+    body:
+      encoding: UTF-8
+      string: '[{"region":"UT","acctid":"2","phone":"8015551212","postal":"84047","accttype":"ECHK","ssnl4":"7890","defaultacct":"N","profileid":"16119544912843682300","city":"MIDVALE","country":"US","token":"9124468384113123","email":"tom.jones@example.com","name":"TOM
+        JONES","license":"UT:98989898","auoptout":"N"},{"region":"UT","acctid":"1","phone":"8015551212","postal":"84047","accttype":"VISA","defaultacct":"Y","profileid":"16119544912843682300","city":"MIDVALE","country":"US","expiry":"1215","token":"9418594164541111","email":"tom.jones@example.com","name":"TOM
+        JONES","auoptout":"N"}]'
+    http_version: 
+  recorded_at: Thu, 11 Dec 2014 19:25:12 GMT
+- request:
+    method: delete
+    uri: https://testing:testing123@fts.prinpay.com:6443/cardconnect/rest/profile/16119544912843682300/2/496160873888
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - DENY
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '78'
+      Date:
+      - Thu, 11 Dec 2014 19:25:11 GMT
+    body:
+      encoding: UTF-8
+      string: '{"resptext":"Profile Deleted","respcode":"08","respproc":"PPS","respstat":"A"}'
+    http_version: 
+  recorded_at: Thu, 11 Dec 2014 19:25:12 GMT
+- request:
+    method: get
+    uri: https://testing:testing123@fts.prinpay.com:6443/cardconnect/rest/profile/16119544912843682300//496160873888
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - DENY
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '280'
+      Date:
+      - Thu, 11 Dec 2014 19:25:12 GMT
+    body:
+      encoding: UTF-8
+      string: '[{"region":"UT","acctid":"1","phone":"8015551212","postal":"84047","accttype":"VISA","defaultacct":"Y","profileid":"16119544912843682300","city":"MIDVALE","country":"US","expiry":"1215","token":"9418594164541111","email":"tom.jones@example.com","name":"TOM
+        JONES","auoptout":"N"}]'
+    http_version: 
+  recorded_at: Thu, 11 Dec 2014 19:25:13 GMT
+recorded_with: VCR 2.9.3
