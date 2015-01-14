@@ -1,9 +1,8 @@
-# Create a .env.test and a .development.env for your different local environments
+# Create a .env.test and a .env.development for your different
+# local environments
 require 'dotenv'
-paths = %W(.env .env.#{ENV['APP_ENV']}).map { |name| Dir.pwd + '/' + name }
-Dotenv.load(
-  *paths
-).each { |k, v| ENV[k] = v }
+paths = %W(.env .local.env .env.#{ENV['APP_ENV']}).map { |name| Dir.pwd + '/' + name }
+Dotenv.load(*paths).each { |k, v| ENV[k] = v }
 
 require 'cardconnect_sdk/version'
 
@@ -24,5 +23,4 @@ module CardconnectSdk
   autoload :Funding,           'cardconnect_sdk/funding/funding'
   autoload :Profile,           'cardconnect_sdk/profile/profile'
   autoload :Helpers,           'cardconnect_sdk/helpers/helpers'
-
 end
