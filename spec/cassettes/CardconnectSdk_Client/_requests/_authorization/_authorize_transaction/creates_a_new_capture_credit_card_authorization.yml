@@ -30,16 +30,15 @@ http_interactions:
       Content-Type:
       - application/json
       Content-Length:
-      - '232'
+      - '255'
       Date:
-      - Tue, 09 Dec 2014 21:48:00 GMT
+      - Mon, 27 Apr 2015 17:48:21 GMT
       Set-Cookie:
-      - cardconnect=!MEez0PaOm0joyZoTV5iS4B8SouVgtBZBzuYSFIMVEJ8BHWUw6E6v2FNzuccmjdTCg5K1Nis1722i9z8=;
+      - cardconnect=!PPpvlkMibonThLWtAPhzJKhZZVF6qsLJOp4RHQoa8Ts7HmDCfK42d1uwjpLUARZCWpKM1crLeLXuITM=;
         path=/
     body:
       encoding: UTF-8
-      string: '{"amount":"99.99","resptext":"Approval","authcode":"PPS889","respcode":"00","retref":"343045160479","merchid":"496160873888","account":"9418594164541111","cvvresp":"M","commcard":"AC
-        ","avsresp":"Z","respstat":"A","respproc":"FNOR"}'
+      string: '{"batchid":"1900940055","retref":"117196149700","commcard":"AC ","avsresp":"Z","respproc":"FNOR","amount":"99.99","resptext":"Approval","authcode":"PPS586","respcode":"00","merchid":"496160873888","cvvresp":"M","account":"9418594164541111","respstat":"A"}'
     http_version: 
-  recorded_at: Tue, 09 Dec 2014 21:48:02 GMT
+  recorded_at: Mon, 27 Apr 2015 17:48:21 GMT
 recorded_with: VCR 2.9.3

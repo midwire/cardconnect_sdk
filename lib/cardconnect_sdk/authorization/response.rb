@@ -5,7 +5,8 @@ module CardconnectSdk
       include Helpers::Response
 
       attr_reader :respstat, :account, :token, :retref, :amount, :merchid, :commcard,
-                  :respcode, :resptext, :avsresp, :cvvresp, :authcode, :respproc
+                  :respcode, :resptext, :avsresp, :cvvresp, :authcode, :respproc,
+                  :batchid
     end
   end
 end
