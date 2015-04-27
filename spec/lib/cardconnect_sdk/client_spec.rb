@@ -68,7 +68,8 @@ module CardconnectSdk
             req = FactoryGirl.create(:visa_authorization_request, :capture, amount: '99.99')
             res = instance.authorize_transaction(req)
             expect(res).to be_approved
-            expect(res.authcode).to_not be_nil
+            expect(res.authcode).to_not be_empty
+            expect(res.batchid).to_not be_empty
           end
 
           it 'creates a new echeck authorization' do
@@ -104,6 +105,8 @@ module CardconnectSdk
             req = FactoryGirl.create(:capture_request, retref: retref)
             res = instance.capture_transaction(req)
             expect(res.setlstat).to eq("Queued for Capture")
+            expect(res).to be_approved
+            expect(res.batchid).to_not be_empty
           end
         end
       end

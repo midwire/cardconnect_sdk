@@ -32,22 +32,22 @@ http_interactions:
       Content-Length:
       - '231'
       Date:
-      - Tue, 09 Dec 2014 21:48:01 GMT
+      - Mon, 27 Apr 2015 17:47:45 GMT
       Set-Cookie:
-      - cardconnect=!EJV2KMOryuqOH0UTV5iS4B8SouVgtKa4RbPpQQ9U4dg94WHiBRxOjD4oT23zGBdgycF/WDAucizsRE4=;
+      - cardconnect=!qm7EnIxsR0QFHrGtAPhzJKhZZVF6qo34fN89PadiG6ePi7oI1U6PoX9S0UutPaGUaDmXM6SJH3mg/to=;
         path=/
     body:
       encoding: UTF-8
-      string: '{"amount":"0.99","resptext":"Approval","authcode":"PPS891","respcode":"00","retref":"343047160481","merchid":"496160873888","account":"9418594164541111","cvvresp":"M","commcard":"AC
+      string: '{"amount":"0.99","resptext":"Approval","authcode":"PPS585","respcode":"00","retref":"117195149664","merchid":"496160873888","account":"9418594164541111","cvvresp":"M","commcard":"AC
         ","avsresp":"Z","respstat":"A","respproc":"FNOR"}'
     http_version: 
-  recorded_at: Tue, 09 Dec 2014 21:48:04 GMT
+  recorded_at: Mon, 27 Apr 2015 17:47:45 GMT
 - request:
     method: put
     uri: https://testing:testing123@fts.prinpay.com:6443/cardconnect/rest/capture
     body:
       encoding: UTF-8
-      string: '{"merchid":"496160873888","retref":"343047160481","amount":"0.99"}'
+      string: '{"merchid":"496160873888","retref":"117195149664","amount":"0.99"}'
     headers:
       Accept:
       - application/json
@@ -71,16 +71,17 @@ http_interactions:
       Content-Type:
       - application/json
       Content-Length:
-      - '232'
+      - '238'
       Date:
-      - Tue, 09 Dec 2014 21:48:01 GMT
+      - Mon, 27 Apr 2015 17:47:45 GMT
       Set-Cookie:
-      - cardconnect=!RFdvtBqKYVrv4k4TV5iS4B8SouVgtKPbdOsYuhyZ+idi3TiPV2add3WqUfhxyXefTKkQt8qciOLqcPo=;
+      - cardconnect=!r9uwUNkZI3a9UMutAPhzJKhZZVF6qrbKiJHsiqzdwlR+ESjAYCJMqzlTTkO4dyfp0LIm+fDVbD5ci7s=;
         path=/
     body:
       encoding: UTF-8
-      string: '{"amount":"0.99","resptext":"Approval","setlstat":"Queued for Capture","respcode":"00","retref":"343047160481","merchid":"496160873888","defaultacct":"","account":"9418594164541111","commcard":"AC
+      string: '{"amount":"0.99","batchid":"1900940055","resptext":"Approval","setlstat":"Queued
+        for Capture","respcode":"00","retref":"117195149664","merchid":"496160873888","account":"9418594164541111","commcard":"AC
         ","respstat":"A","respproc":"FNOR"}'
     http_version: 
-  recorded_at: Tue, 09 Dec 2014 21:48:04 GMT
+  recorded_at: Mon, 27 Apr 2015 17:47:45 GMT
 recorded_with: VCR 2.9.3
