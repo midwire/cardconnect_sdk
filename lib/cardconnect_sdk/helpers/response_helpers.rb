@@ -4,6 +4,7 @@ module CardconnectSdk
       RESPSTAT_APPROVED = 'A'
       RESPSTAT_RETRY    = 'B'
       RESPSTAT_DECLINED = 'C'
+      RESPPROC_INTERNAL = 'PPS'
 
       module ClassMethods
       end
@@ -19,6 +20,14 @@ module CardconnectSdk
 
         def declined?
           respstat == RESPSTAT_DECLINED
+        end
+
+        def card_connect_declined?
+          declined? && respproc == RESPPROC_INTERNAL
+        end
+
+        def card_processor_declined?
+          declined? && respproc != RESPPROC_INTERNAL
         end
       end
 
