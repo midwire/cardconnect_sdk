@@ -1,3 +1,7 @@
+*1.1.0* (April 29, 2015)
+
+* Can distinguish between CardConnect declines and Card Processor declines
+
 *1.0.0* (April 27, 2015)
 
 * Initial release
