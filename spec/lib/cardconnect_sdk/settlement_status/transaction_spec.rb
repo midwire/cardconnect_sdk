@@ -10,14 +10,24 @@ module CardconnectSdk
           let(:instance) { described_class.new(setlstat: 'Y') }
 
           it { expect(instance).to be_settled }
+          it { expect(instance).to be_card_bank_accepted }
         end
 
-        context "#when setlstat != 'Y'" do
+        context "#when setlstat == 'N'" do
           let(:instance) { described_class.new(setlstat: 'N') }
+
+          it { expect(instance).to be_settled }
+          it { expect(instance).to_not be_card_bank_accepted }
+        end
+
+        context "#when setlstat != 'Y' or 'N'" do
+          let(:instance) { described_class.new(setlstat: 'R') }
           
           it { expect(instance).to_not be_settled }
+          it { expect(instance).to_not be_card_bank_accepted }
         end
       end
+
     end
   end
 end
