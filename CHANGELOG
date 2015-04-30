@@ -1,3 +1,7 @@
+*1.2.0* (April 30, 2015)
+
+* Changed meaning of settled and added card_bank_accepted.  Settled now determines whether a decision has been made (accepted or declined). The card_bank_accepted method tells you whether the issuing bank will accept the request.
+
 *1.1.0* (April 29, 2015)
 
 * Can distinguish between CardConnect declines and Card Processor declines

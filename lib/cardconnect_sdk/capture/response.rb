@@ -7,6 +7,9 @@ module CardconnectSdk
       attr_reader :amount, :setlstat, :retref, :merchid, :account,
                   :respcode, :resptext, :respproc, :respstat, :batchid
 
+      def settled?
+        false
+      end
     end
   end
 end

@@ -9,6 +9,10 @@ module CardconnectSdk
         capture = described_class.new(respstat: 'A', batchid: '1234')
         expect(capture.batchid).to_not be_empty
       end
+
+      it 'has not settled' do
+        expect(described_class.new).to_not be_settled
+      end
     end
   end
 end
