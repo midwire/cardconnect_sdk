@@ -17,6 +17,10 @@ module CardconnectSdk
       def approved?
         true
       end
+
+      def declined?
+        false
+      end
     end
   end
 end

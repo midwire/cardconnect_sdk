@@ -36,6 +36,14 @@ module CardconnectSdk
         end
       end
 
+      context '.declined?' do
+        let(:instance) { described_class.new }
+
+        it 'should never be declined' do
+          expect(instance).to_not be_declined
+        end
+      end
+
     end
   end
 end
