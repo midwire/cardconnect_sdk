@@ -28,6 +28,14 @@ module CardconnectSdk
         end
       end
 
+      context '.approved?' do
+        let(:instance) { described_class.new }
+
+        it 'should always be approved' do
+          expect(instance).to be_approved
+        end
+      end
+
     end
   end
 end
