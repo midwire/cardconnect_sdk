@@ -168,10 +168,37 @@ module CardconnectSdk
       end
 
       context '#settlement_status', :vcr do
-        context '.settlement_status_transaction' do
-          it 'returns an array of transactions with settlement status info' do
+        context '.settlement_status_transaction', focus:true do
+          it 'returns settlement status for a batch' do
+            req = CardconnectSdk::SettlementStatus::Request.new(merchid: ENV['CARDCONNECT_MERCHANT_ID'], batchid: '1900940041')
+            res = instance.settlement_status_for_batch(req)
+            expect(res.batches).to be_a(Array)
+            expect(res.batches.count).to eql(1)
+
+            batch = res.batches.first
+            expect(batch).to be_a(CardconnectSdk::SettlementStatus::Batch)
+
+            txn = batch.txns.first
+            expect(txn).to be_a(CardconnectSdk::SettlementStatus::Transaction)
+            expect(txn.retref).to match(/^[0-9]+$/)
+          end
+
+          it 'returns settlement status merchant since last request' do
+            req = CardconnectSdk::SettlementStatus::Request.new(merchid: ENV['CARDCONNECT_MERCHANT_ID'])
+            res = instance.settlement_status_for_merchant(req)
+            expect(res.batches).to be_a(Array)
+
+            batch = res.batches.first
+            expect(batch).to be_a(CardconnectSdk::SettlementStatus::Batch)
+
+            txn = batch.txns.first
+            expect(txn).to be_a(CardconnectSdk::SettlementStatus::Transaction)
+            expect(txn.retref).to match(/^[0-9]+$/)
+          end
+
+          it 'returns settlement status for a date' do
             req = CardconnectSdk::SettlementStatus::Request.new(merchid: ENV['CARDCONNECT_MERCHANT_ID'], date: '1208')
-            res = instance.settlement_status_transaction(req)
+            res = instance.settlement_status_for_date(req)
             expect(res.batches).to be_a(Array)
 
             batch = res.batches.first
