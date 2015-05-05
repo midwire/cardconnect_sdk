@@ -4,7 +4,7 @@ module CardconnectSdk
       include Attributable
 
       # Standard Attributes for all settlestat
-      attr_accessor :merchid, :date
+      attr_accessor :merchid, :date, :batchid
       
     end
   end
