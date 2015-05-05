@@ -1,0 +1,41 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://testing:testing123@fts.prinpay.com:6443/cardconnect/rest/settlestat?batchid=1900940041&merchid=496160873888
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - DENY
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '898'
+      Date:
+      - Tue, 05 May 2015 16:07:23 GMT
+      Set-Cookie:
+      - cardconnect=!0LNqS/YbsfQYlvGtAPhzJKhZZVF6qpCdAP5/a6LyTlvD17E4nfNHgruFGM9mIFxXIfXOwAtRMYlyPe4=;
+        path=/
+    body:
+      encoding: UTF-8
+      string: '[{"txns":[{"setlstat":"Y","retref":"112074138319"},{"setlstat":"Y","retref":"112065138312"},{"setlstat":"Y","retref":"112001152555"},{"setlstat":"Y","retref":"112016147309"},{"setlstat":"Y","retref":"112032149158"},{"setlstat":"Y","retref":"112028149152"},{"setlstat":"Y","retref":"112030149154"},{"setlstat":"Y","retref":"112031149157"},{"setlstat":"Y","retref":"112006142270"},{"setlstat":"Y","retref":"112029149153"},{"setlstat":"Y","retref":"112015147186"},{"setlstat":"Y","retref":"112064138311"},{"setlstat":"Y","retref":"112068138314"},{"setlstat":"Y","retref":"112040151863"},{"setlstat":"Y","retref":"112014142637"},{"setlstat":"Y","retref":"112013146927"},{"setlstat":"Y","retref":"112002152758"},{"setlstat":"Y","retref":"112066138313"},{"setlstat":"Y","retref":"112033149158"}],"batchid":"1900940041","hoststat":"GB","merchid":"496160873888","hostbatch":"1900940043","respproc":"FNOR"}]'
+    http_version: 
+  recorded_at: Tue, 05 May 2015 16:07:25 GMT
+recorded_with: VCR 2.9.3
