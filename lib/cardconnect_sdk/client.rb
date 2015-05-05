@@ -20,8 +20,6 @@ module CardconnectSdk
     end
 
     def ping
-      puts 'auth_token'
-      p auth_token
       response = RestClient::Request.new(
         method: :get,
         url: url,
