@@ -1,0 +1,41 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://testing:testing123@fts.prinpay.com:6443/cardconnect/rest/settlestat?merchid=496160873888
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Frame-Options:
+      - DENY
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '12'
+      Date:
+      - Wed, 06 May 2015 16:54:48 GMT
+      Set-Cookie:
+      - cardconnect=!2gZPJ9GuPRqyPdytAPhzJKhZZVF6qrGjJzSrHwKZbcwvyrm7YZU6i/9nb/6weeRGA2gepQSFyPCjs/0=;
+        path=/
+    body:
+      encoding: UTF-8
+      string: Null batches
+    http_version: 
+  recorded_at: Wed, 06 May 2015 16:54:47 GMT
+recorded_with: VCR 2.9.3
