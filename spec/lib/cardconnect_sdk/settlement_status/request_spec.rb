@@ -27,7 +27,7 @@ module CardconnectSdk
           end
         end
 
-        context 'status for specifiec batch' do
+        context 'status for specific batch' do
           it 'can request status for a batch' do
             req = described_class.new(merchid: ENV['CARDCONNECT_MERCHANT_ID'], batchid: 'abc123')
             expect(req.merchid).to eq(ENV['CARDCONNECT_MERCHANT_ID'])

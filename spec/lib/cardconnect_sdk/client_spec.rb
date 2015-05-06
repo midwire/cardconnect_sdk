@@ -168,7 +168,7 @@ module CardconnectSdk
       end
 
       context '#settlement_status', :vcr do
-        context '.settlement_status_transaction', focus:true do
+        context '.settlement_status_transaction' do
           it 'returns settlement status for a batch' do
             req = CardconnectSdk::SettlementStatus::Request.new(merchid: ENV['CARDCONNECT_MERCHANT_ID'], batchid: '1900940041')
             res = instance.settlement_status_for_batch(req)
@@ -207,6 +207,13 @@ module CardconnectSdk
             txn = batch.txns.first
             expect(txn).to be_a(CardconnectSdk::SettlementStatus::Transaction)
             expect(txn.retref).to match(/^[0-9]+$/)
+          end
+
+          it 'returns empty settlement status' do
+            req = CardconnectSdk::SettlementStatus::Request.new(merchid: ENV['CARDCONNECT_MERCHANT_ID'])
+            res = instance.settlement_status_for_merchant(req)
+            expect(res.batches).to be_a(Array)
+            expect(res.batches).to be_empty
           end
         end
       end
