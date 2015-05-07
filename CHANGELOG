@@ -1,3 +1,7 @@
+*1.8.0* (May 07, 2015)
+
+* Settlement Status determines the query url based on request
+
 *1.7.0* (May 06, 2015)
 
 * Settlment status handles empty results
