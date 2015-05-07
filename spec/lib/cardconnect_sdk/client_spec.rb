@@ -171,12 +171,13 @@ module CardconnectSdk
         context '.settlement_status_transaction' do
           it 'returns settlement status for a batch' do
             req = CardconnectSdk::SettlementStatus::Request.new(merchid: ENV['CARDCONNECT_MERCHANT_ID'], batchid: '1900940041')
-            res = instance.settlement_status_for_batch(req)
+            res = instance.settlement_status(req)
             expect(res.batches).to be_a(Array)
             expect(res.batches.count).to eql(1)
 
             batch = res.batches.first
             expect(batch).to be_a(CardconnectSdk::SettlementStatus::Batch)
+            expect(batch.batchid).to eql('1900940041')
 
             txn = batch.txns.first
             expect(txn).to be_a(CardconnectSdk::SettlementStatus::Transaction)
@@ -185,11 +186,12 @@ module CardconnectSdk
 
           it 'returns settlement status merchant since last request' do
             req = CardconnectSdk::SettlementStatus::Request.new(merchid: ENV['CARDCONNECT_MERCHANT_ID'])
-            res = instance.settlement_status_for_merchant(req)
+            res = instance.settlement_status(req)
             expect(res.batches).to be_a(Array)
 
             batch = res.batches.first
             expect(batch).to be_a(CardconnectSdk::SettlementStatus::Batch)
+            expect(batch.merchid).to eql(ENV['CARDCONNECT_MERCHANT_ID'])
 
             txn = batch.txns.first
             expect(txn).to be_a(CardconnectSdk::SettlementStatus::Transaction)
@@ -198,7 +200,7 @@ module CardconnectSdk
 
           it 'returns settlement status for a date' do
             req = CardconnectSdk::SettlementStatus::Request.new(merchid: ENV['CARDCONNECT_MERCHANT_ID'], date: '1208')
-            res = instance.settlement_status_for_date(req)
+            res = instance.settlement_status(req)
             expect(res.batches).to be_a(Array)
 
             batch = res.batches.first
@@ -211,7 +213,7 @@ module CardconnectSdk
 
           it 'returns empty settlement status' do
             req = CardconnectSdk::SettlementStatus::Request.new(merchid: ENV['CARDCONNECT_MERCHANT_ID'])
-            res = instance.settlement_status_for_merchant(req)
+            res = instance.settlement_status(req)
             expect(res.batches).to be_a(Array)
             expect(res.batches).to be_empty
           end
